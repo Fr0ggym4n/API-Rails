@@ -1,10 +1,10 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :update, :destroy]
-  before_action :authenticate_user!, only: [:create, :update, :destroy]
+  before_action :authenticate_user!, only: [ :create, :update, :destroy]
   before_action :check_if_private, only: [:show ]
   before_action :check_if_author, only: [:update, :destroy]
-
   # GET /articles
+
   def index
     @articles = Article.all
 
@@ -18,6 +18,7 @@ class ArticlesController < ApplicationController
 
   # POST /articles
   def create
+
     @article = Article.new(article_params)
     @article.user_id = current_user.id
 
@@ -50,7 +51,7 @@ class ArticlesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def article_params
-      params.require(:article).permit(:title, :content, :user_id)
+      params.require(:article).permit(:title, :content, :is_private)
     end
 
     def check_if_private

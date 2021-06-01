@@ -1,12 +1,10 @@
 class SessionsController < Devise::SessionsController
-  
   respond_to :json
 
-
-    private
+  private
 
   def respond_with(resource, _opts = {})
-    render_jsonapi_response(resource)
+    render json: resource
   end
 
   def respond_to_on_destroy

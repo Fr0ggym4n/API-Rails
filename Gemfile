@@ -47,8 +47,10 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
+gem 'faker'
 gem 'devise'
 gem 'devise-jwt', '~> 0.8.1'
+gem 'fast_jsonapi'
 gem 'dotenv'
 gem 'dotenv-rails'
 gem 'rack-cors'
