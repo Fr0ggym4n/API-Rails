@@ -6,19 +6,21 @@ class ApplicationController < ActionController::API
         if resource.errors.empty?
           render jsonapi: resource
         else
-          render jsonapi_errors: resource.errors, status: 400
+          validation_error(resource)
         end
     end
 
-    def record_not_unique(message)
+    def validation_error(resource)
       render json: {
         'errors': [
           {
-            'status': '400',
-            'title': message
+            status: '400',
+            title: 'Bad Request',
+            detail: resource.errors,
+            code: '100'
           }
         ]
-      }, status: 400
+      }, status: :bad_request
     end
 
 end
